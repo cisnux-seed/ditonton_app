@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "815807325355",
+    "project_id": "cisnux-ditonton",
+    "storage_bucket": "cisnux-ditonton.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815807325355:android:91b6e9977ba2b0c83803ee",
+        "android_client_info": {
+          "package_name": "com.cisnux.ditonton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815807325355-7kv6kpclf2gvilth81o3g19v04avlul3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKCmU9ottAAOFoNJesQjI2vMEOWayfpBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815807325355-7kv6kpclf2gvilth81o3g19v04avlul3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
