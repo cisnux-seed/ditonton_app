@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:core/core.dart';
 import 'package:core/presentation/pages/home_page.dart';
 import 'package:core/presentation/pages/movies/movie_detail_page.dart';
