@@ -45,9 +45,7 @@ class HomeMovie extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is PopularMoviesHasData) {
-              return MovieList(state.result
-                  .where((element) => element.voteAverage! > 7)
-                  .toList());
+              return MovieList(state.result);
             } else {
               return Text('Failed');
             }
@@ -64,9 +62,7 @@ class HomeMovie extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is TopRatedMoviesHasData) {
-              return MovieList(state.result
-                  .where((element) => element.voteAverage! > 7)
-                  .toList());
+              return MovieList(state.result);
             } else {
               return Text('Failed');
             }

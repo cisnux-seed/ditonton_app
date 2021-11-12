@@ -45,9 +45,7 @@ class HomeTv extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is PopularTvHasData) {
-              return TvList(state.result
-                  .where((element) => element.voteAverage! > 7)
-                  .toList());
+              return TvList(state.result);
             } else {
               return Text('Failed');
             }
@@ -64,9 +62,7 @@ class HomeTv extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is TopRatedTvHasData) {
-              return TvList(state.result
-                  .where((element) => element.voteAverage! > 7)
-                  .toList());
+              return TvList(state.result);
             } else {
               return Text('Failed');
             }
