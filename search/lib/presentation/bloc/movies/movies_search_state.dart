@@ -1,15 +1,16 @@
 part of 'movies_search_bloc.dart';
 
-abstract class MoviesSearchState extends Equatable {
-  const MoviesSearchState();
+abstract class MoviesSearchState extends Equatable {}
 
+class MoviesSearchEmpty extends MoviesSearchState {
   @override
   List<Object> get props => [];
 }
 
-class MoviesSearchEmpty extends MoviesSearchState {}
-
-class MoviesSearchLoading extends MoviesSearchState {}
+class MoviesSearchLoading extends MoviesSearchState {
+  @override
+  List<Object> get props => [];
+}
 
 class MoviesSearchError extends MoviesSearchState {
   final String message;

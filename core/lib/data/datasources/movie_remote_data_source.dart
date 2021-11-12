@@ -45,7 +45,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<List<MovieModel>> getMovieRecommendations(int id) async {
-    // var iOClient = IOClient(await sslPinned.getHttpClient());
     final response = await iOClient
         .get(Uri.parse('$BASE_URL/movie/$id/recommendations?$API_KEY'));
 
@@ -58,7 +57,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<List<MovieModel>> getPopularMovies() async {
-    // var iOClient = IOClient(await sslPinned.getHttpClient());
     final response =
         await iOClient.get(Uri.parse('$BASE_URL/movie/popular?$API_KEY'));
 
@@ -71,7 +69,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<List<MovieModel>> getTopRatedMovies() async {
-    // var iOClient = IOClient(await sslPinned.getHttpClient());
     final response =
         await iOClient.get(Uri.parse('$BASE_URL/movie/top_rated?$API_KEY'));
 
@@ -84,7 +81,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<List<MovieModel>> searchMovies(String query) async {
-    // var iOClient = IOClient(await sslPinned.getHttpClient());
     final response = await iOClient
         .get(Uri.parse('$BASE_URL/search/movie?$API_KEY&query=$query'));
 

@@ -1,65 +1,67 @@
-import 'package:core/core.dart';
-import 'package:core/domain/entities/tv.dart';
+import 'package:core/presentation/bloc/tv/popular_tv_bloc.dart';
 import 'package:core/presentation/pages/tv/popular_tv_page.dart';
-import 'package:core/presentation/provider/tv/popular_tv_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
-import 'popular_tv_page_test.mocks.dart';
+import 'package:mocktail/mocktail.dart';
+import '../../../dummy_data/dummy_objects.dart';
+import 'popular_tv_page_test_mocks.dart';
 
-@GenerateMocks([PopularTvNotifier])
 void main() {
-  late MockPopularTvNotifier mockNotifier;
+  late final MockPopularTvBloc mockPopularTvBloc;
 
-  setUp(() {
-    mockNotifier = MockPopularTvNotifier();
+  setUpAll(() {
+    registerFallbackValue(PopularTvStateFake());
+    registerFallbackValue(PopularTvEventFake());
+
+    mockPopularTvBloc = MockPopularTvBloc();
   });
 
   Widget _makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<PopularTvNotifier>.value(
-      value: mockNotifier,
+    return BlocProvider<PopularTvBloc>.value(
+      value: mockPopularTvBloc,
       child: MaterialApp(
         home: body,
       ),
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
-      (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loading);
+  group('popular tv series page', () {
+    testWidgets(
+        'should display CircularProgressIndicator when state is PopularTvLoading',
+        (WidgetTester tester) async {
+      when(() => mockPopularTvBloc.state).thenReturn(PopularTvLoading());
+      final title = find.text('Popular Tv Series');
+      final circularProgressIndicator = find.byType(CircularProgressIndicator);
 
-    final progressBarFinder = find.byType(CircularProgressIndicator);
-    final centerFinder = find.byType(Center);
+      await tester.pumpWidget(_makeTestableWidget(PopularTvPage()));
 
-    await tester.pumpWidget(_makeTestableWidget(PopularTvPage()));
+      expect(circularProgressIndicator, findsOneWidget);
+      expect(title, findsOneWidget);
+    });
 
-    expect(centerFinder, findsOneWidget);
-    expect(progressBarFinder, findsOneWidget);
-  });
+    testWidgets('should display ListView when state is PopularTvHasData',
+        (WidgetTester tester) async {
+      when(() => mockPopularTvBloc.state).thenReturn(PopularTvHasData(tTvList));
+      final title = find.text('Popular Tv Series');
+      final listView = find.byType(ListView);
 
-  testWidgets('Page should display ListView when data is loaded',
-      (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tv).thenReturn(<Tv>[]);
+      await tester.pumpWidget(_makeTestableWidget(PopularTvPage()));
 
-    final listViewFinder = find.byType(ListView);
+      expect(listView, findsOneWidget);
+      expect(title, findsOneWidget);
+    });
 
-    await tester.pumpWidget(_makeTestableWidget(PopularTvPage()));
+    testWidgets("should display Text('Failed') when state is PopularTvError",
+        (WidgetTester tester) async {
+      when(() => mockPopularTvBloc.state).thenReturn(PopularTvError('Failed'));
+      final title = find.text('Popular Tv Series');
+      final errorText = find.text('Failed');
 
-    expect(listViewFinder, findsOneWidget);
-  });
+      await tester.pumpWidget(_makeTestableWidget(PopularTvPage()));
 
-  testWidgets('Page should display text with message when Error',
-      (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Error);
-    when(mockNotifier.message).thenReturn('Error message');
-
-    final textFinder = find.byKey(const Key('error_message'));
-
-    await tester.pumpWidget(_makeTestableWidget(PopularTvPage()));
-
-    expect(textFinder, findsOneWidget);
+      expect(errorText, findsOneWidget);
+      expect(title, findsOneWidget);
+    });
   });
 }

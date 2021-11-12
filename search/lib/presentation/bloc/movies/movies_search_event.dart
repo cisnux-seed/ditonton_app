@@ -1,8 +1,6 @@
 part of 'movies_search_bloc.dart';
 
-abstract class MoviesSearchEvent extends Equatable {
-  const MoviesSearchEvent();
-}
+abstract class MoviesSearchEvent extends Equatable {}
 
 class MoviesOnQueryChanged extends MoviesSearchEvent {
   final String query;

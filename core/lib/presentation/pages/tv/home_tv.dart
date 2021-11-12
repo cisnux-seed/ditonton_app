@@ -1,28 +1,14 @@
+import 'package:core/presentation/bloc/tv/on_the_air_tv_bloc.dart';
+import 'package:core/presentation/bloc/tv/top_rated_tv_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/presentation/bloc/tv/popular_tv_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/domain/entities/tv.dart';
-import 'package:core/presentation/provider/tv/tv_list_notifier.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../../core.dart';
 
-class HomeTv extends StatefulWidget {
-  @override
-  _HomeTvState createState() => _HomeTvState();
-}
-
-class _HomeTvState extends State<HomeTv> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(
-      () => Provider.of<TvListNotifier>(context, listen: false)
-        ..fetchOnTheAirTv()
-        ..fetchPopularTv()
-        ..fetchTopRatedTv(),
-    );
-  }
-
+class HomeTv extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,17 +21,16 @@ class _HomeTvState extends State<HomeTv> {
             style: kHeading6,
           ),
         ),
-        Consumer<TvListNotifier>(
-          builder: (context, data, child) {
-            final state = data.onTheAirState;
-            if (state == RequestState.Loading) {
+        BlocBuilder<OnTheAirTvBloc, OnTheAirTvState>(
+          builder: (_, state) {
+            if (state is OnTheAirTvLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state == RequestState.Loaded) {
-              return TvList(data.onTheAirTv);
+            } else if (state is OnTheAirTvHasData) {
+              return TvList(state.result);
             } else {
-              return const Text('Failed');
+              return Text('Failed');
             }
           },
         ),
@@ -53,34 +38,40 @@ class _HomeTvState extends State<HomeTv> {
           title: 'Popular Tv Series',
           onTap: () => Navigator.pushNamed(context, POPULAR_TV_ROUTE),
         ),
-        Consumer<TvListNotifier>(builder: (context, data, child) {
-          final state = data.popularTvState;
-          if (state == RequestState.Loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state == RequestState.Loaded) {
-            return TvList(data.popularTv);
-          } else {
-            return const Text('Failed');
-          }
-        }),
+        BlocBuilder<PopularTvBloc, PopularTvState>(
+          builder: (_, state) {
+            if (state is PopularTvLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is PopularTvHasData) {
+              return TvList(state.result
+                  .where((element) => element.voteAverage! > 7)
+                  .toList());
+            } else {
+              return Text('Failed');
+            }
+          },
+        ),
         _buildSubHeading(
           title: 'Top Rated Tv Series',
           onTap: () => Navigator.pushNamed(context, TOP_RATED_TV_ROUTE),
         ),
-        Consumer<TvListNotifier>(builder: (context, data, child) {
-          final state = data.topRatedTvState;
-          if (state == RequestState.Loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state == RequestState.Loaded) {
-            return TvList(data.topRatedTv);
-          } else {
-            return const Text('Failed');
-          }
-        }),
+        BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+          builder: (_, state) {
+            if (state is TopRatedTvLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is TopRatedTvHasData) {
+              return TvList(state.result
+                  .where((element) => element.voteAverage! > 7)
+                  .toList());
+            } else {
+              return Text('Failed');
+            }
+          },
+        ),
       ],
     );
   }

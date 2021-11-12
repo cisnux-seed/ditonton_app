@@ -1,49 +1,33 @@
-import 'package:core/presentation/provider/tv/watchlist_tv_notifier.dart';
+import 'package:core/presentation/bloc/tv/show_watchlist_tv_bloc.dart';
 import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core.dart';
-
-class WatchlistTv extends StatefulWidget {
-  @override
-  _WatchlistTvState createState() => _WatchlistTvState();
-}
-
-class _WatchlistTvState extends State<WatchlistTv> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistTvNotifier>(context, listen: false)
-            .fetchWatchlistTv());
-  }
-
+class WatchlistTv extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<WatchlistTvNotifier>(
-        builder: (context, data, child) {
-          if (data.watchlistState == RequestState.Loading) {
+      body: BlocBuilder<ShowWatchlistTvBloc, ShowWatchlistTvState>(
+        builder: (context, state) {
+          if (state is ShowWatchlistTvLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (data.watchlistState == RequestState.Loaded) {
+          } else if (state is ShowWatchlistTvHasData) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                final tv = data.watchlistTv[index];
+                final tv = state.tv[index];
                 return TvCard(tv);
               },
-              itemCount: data.watchlistTv.length,
+              itemCount: state.tv.length,
             );
-          } else if (data.watchlistState == RequestState.Empty) {
+          } else if (state is ShowWatchlistTvEmpty) {
             return Center(
               child: Text("You Don't Have Watchlist Tv Series"),
             );
           } else {
             return Center(
-              key: const Key('error_message'),
-              child: Text(data.message),
+              child: Text((state as ShowWatchlistTvError).message),
             );
           }
         },

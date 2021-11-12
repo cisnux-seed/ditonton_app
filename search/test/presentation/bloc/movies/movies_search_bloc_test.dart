@@ -76,7 +76,7 @@ void main() {
     );
 
     blocTest<MoviesSearchBloc, MoviesSearchState>(
-      'Should emit [Loading, Error] when get search is unsuccessful',
+      'Should emit [Loading, Error] when data is gotten is unsuccessful',
       build: () {
         when(mockSearchMovies.execute(tQuery))
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));

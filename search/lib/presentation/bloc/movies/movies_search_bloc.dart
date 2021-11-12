@@ -24,12 +24,8 @@ class MoviesSearchBloc extends Bloc<MoviesSearchEvent, MoviesSearchState> {
     final result = await _searchMovies.execute(query);
 
     result.fold(
-      (failure) {
-        emit(MoviesSearchError(failure.message));
-      },
-      (data) {
-        emit(MoviesSearchHasData(data));
-      },
+      (failure) => emit(MoviesSearchError(failure.message)),
+      (data) => emit(MoviesSearchHasData(data)),
     );
   }
 

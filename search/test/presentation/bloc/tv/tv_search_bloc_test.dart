@@ -44,7 +44,7 @@ void main() {
     });
 
     blocTest<TvSearchBloc, TvSearchState>(
-      'should emit [Loading, HasData] when data is gotten successfully',
+      'should emit [Loading, HasData] when data is gotten is gotten successfully',
       build: () {
         when(mockSearchTv.execute(tQuery))
             .thenAnswer((_) async => Right(tTvList));
