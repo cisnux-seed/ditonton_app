@@ -9,7 +9,7 @@ void main() {
 
   group('search movies and tv series', () {
     testWidgets(
-        'should return movise or tv series list when movie or tv series found by keyword',
+        'should return movies or tv series list when movie or tv series found by keyword',
         (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
@@ -27,9 +27,9 @@ void main() {
 
       var textField = find.byType(TextField);
 
-      await tester.enterText(textField, 'batman');
+      await tester.enterText(textField, 'the flash');
       await tester.testTextInput.receiveAction(TextInputAction.search);
-      await tester.pumpAndSettle();
+      await tester.pumpAndSettle(Duration(seconds: 1));
 
       expect(find.byType(ListView), findsOneWidget);
     });
