@@ -1,12 +1,12 @@
-import 'package:core/domain/entities/movie.dart';
-import 'package:core/domain/entities/tv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:movies/domain/entities/movie.dart';
 import 'package:search/presentation/bloc/movies/movies_search_bloc.dart';
 import 'package:search/presentation/bloc/tv/tv_search_bloc.dart';
 import 'package:search/search.dart';
+import 'package:tv_series/domain/entities/tv.dart';
 import 'search_page_test_mocks.dart';
 
 void main() {

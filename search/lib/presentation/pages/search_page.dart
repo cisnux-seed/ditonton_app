@@ -1,12 +1,12 @@
 import 'package:core/core.dart';
-import 'package:core/domain/entities/movie.dart';
-import 'package:core/presentation/widgets/movie_card_list.dart';
-import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/domain/entities/movie.dart';
+import 'package:movies/presentation/widgets/movie_card_list.dart';
 import 'package:provider/provider.dart';
 import 'package:search/presentation/bloc/movies/movies_search_bloc.dart';
 import 'package:search/presentation/bloc/tv/tv_search_bloc.dart';
+import 'package:tv_series/presentation/widgets/tv_card_list.dart';
 
 class SearchPage extends StatelessWidget {
   @override

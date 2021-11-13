@@ -1,9 +1,9 @@
-import 'package:core/presentation/bloc/movies/show_watchlist_movies_bloc.dart';
-import 'package:core/presentation/bloc/tv/show_watchlist_tv_bloc.dart';
-import 'package:core/presentation/pages/tv/watchlist_tv_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'movies/watchlist_movies_page.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/presentation/bloc/show_watchlist_movies_bloc.dart';
+import 'package:movies/presentation/pages/watchlist_movies_page.dart';
+import 'package:tv_series/presentation/bloc/show_watchlist_tv_bloc.dart';
+import 'package:tv_series/presentation/pages/watchlist_tv_page.dart';
 import '../../core.dart';
 
 class WatchlistPage extends StatefulWidget {

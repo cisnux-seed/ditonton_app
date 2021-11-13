@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:core/domain/entities/tv.dart';
 import 'package:core/utils/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
@@ -7,6 +6,7 @@ import 'package:search/domain/usecases/tv/search_tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:search/presentation/bloc/tv/tv_search_bloc.dart';
+import 'package:tv_series/domain/entities/tv.dart';
 import 'tv_search_bloc_test.mocks.dart';
 
 @GenerateMocks([SearchTv])

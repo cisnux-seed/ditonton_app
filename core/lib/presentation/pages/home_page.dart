@@ -1,15 +1,15 @@
-import 'package:core/presentation/bloc/movies/now_playing_movies_bloc.dart';
-import 'package:core/presentation/bloc/movies/popular_movies_bloc.dart';
-import 'package:core/presentation/bloc/movies/top_rated_movies_bloc.dart';
-import 'package:core/presentation/bloc/tv/on_the_air_tv_bloc.dart';
-import 'package:core/presentation/bloc/tv/popular_tv_bloc.dart';
-import 'package:core/presentation/bloc/tv/top_rated_tv_bloc.dart';
 import 'package:core/presentation/widgets/custom_drawer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
-import 'movies/home_movie.dart';
-import 'tv/home_tv.dart';
+import 'package:movies/presentation/bloc/now_playing_movies_bloc.dart';
+import 'package:movies/presentation/bloc/popular_movies_bloc.dart';
+import 'package:movies/presentation/bloc/top_rated_movies_bloc.dart';
+import 'package:movies/presentation/pages/home_movie.dart';
+import 'package:tv_series/presentation/bloc/on_the_air_tv_bloc.dart';
+import 'package:tv_series/presentation/bloc/popular_tv_bloc.dart';
+import 'package:tv_series/presentation/bloc/top_rated_tv_bloc.dart';
+import 'package:tv_series/presentation/pages/home_tv.dart';
 
 class HomePage extends StatefulWidget {
   @override
