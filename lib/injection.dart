@@ -25,7 +25,6 @@ import 'package:movies/presentation/bloc/watchlist_movies_status_bloc.dart';
 import 'package:search/presentation/bloc/movies/movies_search_bloc.dart';
 import 'package:search/presentation/bloc/tv/tv_search_bloc.dart';
 import 'package:search/search.dart';
-import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:tv_series/data/datasources/tv_local_data_source.dart';
 import 'package:tv_series/data/datasources/tv_remote_data_source.dart';
@@ -158,7 +157,6 @@ void init(HttpClient client) {
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
 
   // external
-  locator.registerLazySingleton(() => http.Client());
   locator.registerLazySingleton(() => IOClient(client));
   locator.registerLazySingleton(() => DataConnectionChecker());
 }
