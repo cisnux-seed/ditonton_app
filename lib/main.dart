@@ -97,6 +97,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
+        navigatorObservers: [routeObserver],
         theme: ThemeData.dark().copyWith(
           primaryColor: kRichBlack,
           scaffoldBackgroundColor: kRichBlack,
@@ -136,14 +137,6 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => WatchlistPage());
             case ABOUT_ROUTE:
               return MaterialPageRoute(builder: (_) => AboutPage());
-            default:
-              return MaterialPageRoute(builder: (_) {
-                return Scaffold(
-                  body: Center(
-                    child: Text('Page not found :('),
-                  ),
-                );
-              });
           }
         },
       ),

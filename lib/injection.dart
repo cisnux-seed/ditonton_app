@@ -24,8 +24,6 @@ import 'package:movies/presentation/bloc/top_rated_movies_bloc.dart';
 import 'package:movies/presentation/bloc/watchlist_movies_status_bloc.dart';
 import 'package:search/presentation/bloc/movies/movies_search_bloc.dart';
 import 'package:search/presentation/bloc/tv/tv_search_bloc.dart';
-import 'package:search/search.dart';
-import 'package:http/io_client.dart';
 import 'package:tv_series/data/datasources/tv_local_data_source.dart';
 import 'package:tv_series/data/datasources/tv_remote_data_source.dart';
 import 'package:tv_series/data/repositories/tv_repository_impl.dart';
@@ -40,14 +38,15 @@ import 'package:tv_series/domain/usecases/get_watchlist_tv.dart';
 import 'package:tv_series/domain/usecases/remove_watchlist_tv.dart';
 import 'package:tv_series/domain/usecases/save_watchlist_tv.dart';
 import 'package:tv_series/presentation/bloc/modify_watchlist_tv_bloc.dart';
-import 'dart:io';
-
 import 'package:tv_series/presentation/bloc/on_the_air_tv_bloc.dart';
 import 'package:tv_series/presentation/bloc/popular_tv_bloc.dart';
 import 'package:tv_series/presentation/bloc/show_watchlist_tv_bloc.dart';
 import 'package:tv_series/presentation/bloc/top_rated_tv_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_detail_bloc.dart';
 import 'package:tv_series/presentation/bloc/watchlist_tv_status_bloc.dart';
+import 'package:search/search.dart';
+import 'package:http/io_client.dart';
+import 'dart:io';
 
 final locator = GetIt.instance;
 

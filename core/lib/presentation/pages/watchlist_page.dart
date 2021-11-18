@@ -1,9 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:movies/presentation/bloc/show_watchlist_movies_bloc.dart';
-import 'package:movies/presentation/pages/watchlist_movies_page.dart';
 import 'package:tv_series/presentation/bloc/show_watchlist_tv_bloc.dart';
+import 'package:movies/presentation/pages/watchlist_movies_page.dart';
 import 'package:tv_series/presentation/pages/watchlist_tv_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:core/utils/routes.dart';
+import 'package:flutter/material.dart';
 import '../../core.dart';
 
 class WatchlistPage extends StatefulWidget {
@@ -11,7 +12,7 @@ class WatchlistPage extends StatefulWidget {
   State<WatchlistPage> createState() => _WatchlistPageState();
 }
 
-class _WatchlistPageState extends State<WatchlistPage> {
+class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
   @override
   void initState() {
     super.initState();
@@ -19,6 +20,20 @@ class _WatchlistPageState extends State<WatchlistPage> {
         BlocProvider.of<ShowWatchlistTvBloc>(context).add(FetchWatchlistTv()));
     Future.microtask(() => BlocProvider.of<ShowWatchlistMoviesBloc>(context)
         .add(FetchWatchlistMovies()));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void didPopNext() {
+    BlocProvider.of<ShowWatchlistTvBloc>(context).add(FetchWatchlistTv());
+    BlocProvider.of<ShowWatchlistMoviesBloc>(context)
+        .add(FetchWatchlistMovies());
+    super.didPopNext();
   }
 
   @override
