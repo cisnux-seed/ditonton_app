@@ -12,7 +12,7 @@ void main() {
         'should return movies or tv series list when movie or tv series found by keyword',
         (WidgetTester tester) async {
       app.main();
-      await tester.pumpAndSettle();
+      await tester.pumpAndSettle(Duration(seconds: 1));
       expect(find.text('Now Playing Movies'), findsOneWidget);
       expect(find.text('Popular Movies'), findsOneWidget);
       expect(find.text('Top Rated Movies'), findsOneWidget);

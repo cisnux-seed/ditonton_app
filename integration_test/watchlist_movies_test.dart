@@ -12,8 +12,7 @@ void main() {
         'should added movie to watchlist movies when save watchlist button tapped',
         (WidgetTester tester) async {
       app.main();
-
-      await tester.pumpAndSettle();
+      await tester.pumpAndSettle(Duration(seconds: 1));
       expect(find.text('Now Playing Movies'), findsOneWidget);
       expect(find.text('Popular Movies'), findsOneWidget);
       expect(find.text('Top Rated Movies'), findsOneWidget);
@@ -22,7 +21,7 @@ void main() {
       expect(find.text('Top Rated Tv Series'), findsOneWidget);
       expect(find.byType(ListView), findsNWidgets(6));
 
-      var movieList = find.byKey(Key('movie-0')).at(0);
+      var movieList = find.byKey(Key('movie-0')).at(1);
       await tester.tap(movieList);
       await tester.pumpAndSettle();
 
