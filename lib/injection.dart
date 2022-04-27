@@ -1,7 +1,7 @@
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/utils/network_info.dart';
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:movies/data/datasources/movie_local_data_source.dart';
 import 'package:movies/data/datasources/movie_remote_data_source.dart';
 import 'package:movies/data/repositories/movie_repository_impl.dart';
@@ -22,8 +22,6 @@ import 'package:movies/presentation/bloc/popular_movies_bloc.dart';
 import 'package:movies/presentation/bloc/show_watchlist_movies_bloc.dart';
 import 'package:movies/presentation/bloc/top_rated_movies_bloc.dart';
 import 'package:movies/presentation/bloc/watchlist_movies_status_bloc.dart';
-import 'package:search/presentation/bloc/movies/movies_search_bloc.dart';
-import 'package:search/presentation/bloc/tv/tv_search_bloc.dart';
 import 'package:tv_series/data/datasources/tv_local_data_source.dart';
 import 'package:tv_series/data/datasources/tv_remote_data_source.dart';
 import 'package:tv_series/data/repositories/tv_repository_impl.dart';
@@ -157,5 +155,5 @@ void init(HttpClient client) {
 
   // external
   locator.registerLazySingleton(() => IOClient(client));
-  locator.registerLazySingleton(() => DataConnectionChecker());
+  locator.registerLazySingleton(() => InternetConnectionChecker());
 }

@@ -1,7 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:search/presentation/bloc/movies/movies_search_bloc.dart';
-import 'package:search/presentation/bloc/tv/tv_search_bloc.dart';
 import 'package:search/search.dart';
 
 class MockMoviesSearchBloc

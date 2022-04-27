@@ -11,8 +11,6 @@ import 'package:about/about.dart';
 import 'package:movies/presentation/pages/movie_detail_page.dart';
 import 'package:movies/presentation/pages/popular_movies_page.dart';
 import 'package:movies/presentation/pages/top_rated_movies_page.dart';
-import 'package:search/presentation/bloc/movies/movies_search_bloc.dart';
-import 'package:search/presentation/bloc/tv/tv_search_bloc.dart';
 import 'package:search/search.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/presentation/bloc/modify_watchlist_movies_bloc.dart';
